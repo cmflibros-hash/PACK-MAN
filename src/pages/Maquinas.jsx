@@ -25,7 +25,7 @@ export default function Maquinas() {
 
   const load = () => {
     const url = filtro ? `/api/maquinas?cliente_id=${filtro}` : '/api/maquinas'
-    fetch(url).then(r => r.json()).then(setData).catch(() => {}).finally(() => setLoading(false))
+    api(url).then(r => r.json()).then(setData).catch(() => {}).finally(() => setLoading(false))
   }
   useEffect(() => { load() }, [filtro])
   useEffect(() => { api('/api/clientes').then(r => r.json()).then(setClientes).catch(() => {}) }, [])
@@ -53,7 +53,7 @@ export default function Maquinas() {
     e.preventDefault()
     const method = editId ? 'PUT' : 'POST'
     const url = editId ? `/api/maquinas/${editId}` : '/api/maquinas'
-    fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+    api(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
       .then(async (r) => {
         const payload = await r.json().catch(() => ({}))
         if (!r.ok) throw new Error(payload.error || 'No se pudo guardar la máquina')

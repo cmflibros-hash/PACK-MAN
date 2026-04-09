@@ -27,7 +27,7 @@ export default function Clientes() {
     e.preventDefault()
     const method = editId ? 'PUT' : 'POST'
     const url = editId ? `/api/clientes/${editId}` : '/api/clientes'
-    fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+    api(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
       .then(async (r) => {
         const payload = await r.json().catch(() => ({}))
         if (!r.ok) throw new Error(payload.error || 'No se pudo guardar el cliente')

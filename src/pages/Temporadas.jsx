@@ -104,7 +104,7 @@ export default function Temporadas() {
     const url = editId ? `/api/temporadas/${editId}` : '/api/temporadas'
     const method = editId ? 'PUT' : 'POST'
     try {
-      const res = await fetch(url, {
+      const res = await api(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
